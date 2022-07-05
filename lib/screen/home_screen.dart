@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 
+import '../model/model.movie.dart';
+
 class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Movie> movies = {
+    Movie.fromMap(
+        {
+          'title' : '사랑의 불시착',
+          'keyword' : '사랑/로맨스/판타지',
+          'poster' : 'test_movie_1.png',
+          'like' : false
+        })
+  } as List<Movie>;
+
   @override
   void initState() {
     super.initState();
