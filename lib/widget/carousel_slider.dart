@@ -5,7 +5,8 @@ import 'package:netflix_clone/model/model.movie.dart';
 class CarouselImage extends StatefulWidget {
   final List<Movie> movies;
 
-  CarouselImage({required this.movies});
+  //CarouselImage({required this.movies});
+  CarouselImage({Key? key, required this.movies}) : super(key: key);
 
   _CarouselImageState createState() => _CarouselImageState();
 }
@@ -42,27 +43,66 @@ class _CarouselImageState extends State<CarouselImage> {
             padding: EdgeInsets.all(20),
           ),
           CarouselSlider(
-              items: images,
-              // 페이지 전환
-              // onPageChanged: (index) {
-              //   setState(() {
-              //     _currentPage = index;
-              //     _currentKeyword = keywords[_currentPage];
-              //   });
-              options: CarouselOptions(
-                  onPageChanged: (index, reason) {
-                    setState(
-                    () {
-                      _currentPage = index;
-                      _currentKeyword = keywords![_currentPage];
-                      },
-                    );
+            items: images,
+            // 페이지 전환
+            // onPageChanged: (index) {
+            //   setState(() {
+            //     _currentPage = index;
+            //     _currentKeyword = keywords[_currentPage];
+            //   });
+            options: CarouselOptions(
+              onPageChanged: (index, reason) {
+                setState(
+                  () {
+                    _currentPage = index;
+                    _currentKeyword = keywords[_currentPage];
                   },
-              ),
+                );
+              },
+            ),
           ),
           Container(
-            child: Text(_currentKeyword),
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 3),
+            child: Text(
+              _currentKeyword,
+              style: TextStyle(fontSize: 11),
+            ),
           ),
+          Container(
+              child: Row(
+            children: <Widget>[
+              Container(
+                child: Column(
+                  children: <Widget>[
+                    likes[_currentPage]
+                        ? IconButton(
+                            icon: Icon(Icons.check),
+                            onPressed: () {},
+                          )
+                        : IconButton(onPressed: () {}, icon: Icon(Icons.add)),
+                    Text(
+                      '내가 찜한 콘텐츠',
+                      style: TextStyle(fontSize: 11),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          )),
+          Container(
+            padding: EdgeInsets.only(right: 10),
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.info)
+                )
+              ],
+            )
+
+
+
+          )
         ],
       ),
     );

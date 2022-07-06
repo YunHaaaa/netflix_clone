@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_clone/widget/carousel_slider.dart';
 
 import '../model/model.movie.dart';
 
@@ -7,15 +8,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Movie> movies = {
-    Movie.fromMap(
-        {
-          'title' : '사랑의 불시착',
-          'keyword' : '사랑/로맨스/판타지',
-          'poster' : 'test_movie_1.png',
-          'like' : false
-        })
-  } as List<Movie>;
+  List<Movie> movies = [
+    Movie.fromMap({
+      'title': '사랑의 불시착',
+      'keyword': '사랑/로맨스/판타지',
+      'poster': 'test_movie_1.png',
+      'like': false
+    })
+  ];
 
   @override
   void initState() {
@@ -24,7 +24,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return TopBar();
+    return ListView(
+      children: <Widget>[
+        Stack(
+          children: <Widget>[
+            CarouselImage(movies: movies),
+            TopBar(),
+          ],
+        )
+      ],
+    );
   }
 }
 
